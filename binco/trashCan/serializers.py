@@ -10,4 +10,4 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 class TrashCanSerializer(serializers.ModelSerializer):
     class Meta:
         model = TrashCan
-        fields = ('id', 'quantity', 'size')
+        fields = ('id', 'quantity', 'size','company','position')

@@ -1,10 +1,12 @@
 
-from django.urls import path
-from .views import TrashCanListAPIView,TrashCanCreateAPIView
+from django.urls import path,include
+from .views import TrashCanViewSet
+from rest_framework.routers import DefaultRouter
+from .views import activate
+router= DefaultRouter()
+router.register('',TrashCanViewSet)
 
 urlpatterns = [
-
-    path('list/', TrashCanListAPIView.as_view(), name="trash-list"),
-    path('create/', TrashCanCreateAPIView.as_view(), name="create-trash")
-
+    path('',include(router.urls), name="trash"),
+    path('activate/<pk>/',activate, name="trash"),
 ]
