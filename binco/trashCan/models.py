@@ -15,5 +15,5 @@ class TrashCan(models.Model):
       size= models.IntegerField(default=0)
       quantity= models.IntegerField(max_length=30)
       is_active= models.BooleanField(default=False)
-      position= models.ForeignKey(Localisation,on_delete=models.CASCADE,null=True,blank=True)
+      position= models.ForeignKey(Localisation,on_delete=models.CASCADE,related_name="position",null=True,blank=True)
       company= models.ForeignKey(Company,on_delete=models.CASCADE,null=True)
