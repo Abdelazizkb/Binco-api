@@ -6,15 +6,19 @@ from django.http import HttpResponse
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import CompanySerializer
-from .models import Company
+from .serializers import CompanySerializer,UserCreateSerializer
+from .models import Company,UserAccount
 import requests
 import json
-
+from rest_framework.generics import ListAPIView
 import requests
 
+class UserList(ListAPIView):
+      serializer_class = UserCreateSerializer
 
-
+      def get_queryset(self):
+          company = self.request.user.company
+          return UserAccount.objects.filter(company=company)
 
 @api_view(['POST'])
 def companyCreate(request):

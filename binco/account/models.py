@@ -25,13 +25,13 @@ class Company(models.Model):
 class UserAccount(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
-    is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=True)
     company = models.ForeignKey(Company, related_name='users', on_delete=models.CASCADE,null=True,blank=True)
     objects = UserAccountManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['name','company']
+    REQUIRED_FIELDS = ['name','company','is_staff']
 
     def get_full_name(self):
         return self.name

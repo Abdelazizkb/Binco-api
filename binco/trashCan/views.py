@@ -28,6 +28,9 @@ class TrashCanViewSet(viewsets.ModelViewSet):
             return TrashCan.objects.filter(company=company)
           else :
             return []
+      def perform_create(self, serializer):
+          company=self.request.user.company
+          serializer.save(company=company)
 
 
 
